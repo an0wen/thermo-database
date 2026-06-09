@@ -1,0 +1,39 @@
+unique_id = "fischer2011"
+
+[science]
+material = "wustite"
+formula = "FeO"
+phase = "solid"
+cristal = "B1"
+method = "LH-DAC XRD"
+
+[description]
+type = "fit"
+cold_type = "bm3"
+thermal_exist = true
+thermal_type = "debye"
+reference_temperature = 300
+
+[validity]
+min_p = 95.2153318933
+max_p = 155.982534269
+min_t = 1143.9
+max_t = 3024.73
+min_rho = 8.00561090858
+max_rho = 9.11471886257
+
+[parameters]
+V_0 = 12.256
+rho_0 = 5.86194516971
+K_0 = 149.4
+dK_0 = 1.0
+K_0_prime = 3.6
+dK_0_prime = 0.04
+T_0 = 300
+theta_0 = 417
+gamma_0 = 1.41
+dgamma_0 = 0.05
+q_debye = 0.5
+
+[other]
+notes = "Mie-Gruneisen-Debye thermal EOS with 300 K BM3 cold curve. Validity fields are the conservative range of the Fischer2011 Table S1 B1-FeO rows ingested here; the published fit also included Campbell et al. 2009, Ozawa et al. 2010, and Seagle et al. 2008 data."

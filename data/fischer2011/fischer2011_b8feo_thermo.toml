@@ -1,0 +1,11 @@
+unique_id = "fischer2011"
+
+[science]
+material = "wustite"
+formula = "FeO"
+phase = "solid"
+cristal = "B8"
+method = "LH-DAC XRD"
+
+[other]
+notes = "Curated from Supplementary Table S1. Density calculated as rho = M_FeO/V using M_FeO = 71.844 g/mol. Rows with symbolic phase entries and no numeric volume were excluded from the phase-specific thermo table and preserved in fischer2011_feo-pvt_thermo_raw.dat. B8 volume is from column 'V B8-FeO'. Some B8 dV and dc/a entries are nan where the original table marked uncertainties as unconstrained (‡)."
