@@ -1,0 +1,13 @@
+# This is a template for metadata about experimental/computational data for a given material.
+# The unique_id should match the unique_id in the corresponding *_source.toml file.
+unique_id = "template"  # This should be replaced with a unique identifier as defined in the *_source.toml, e.g. "miozzi2020"
+
+[science]
+material = ""  # This should be replaced with the material name, e.g. "iron"
+formula = ""  # This should be replaced with the chemical formula, e.g. "Fe"
+phase = ""  # This should be replaced with the phase, e.g. "solid"
+crystal = ""  # This should be replaced with the crystal structure, e.g. "hcp"
+method = ""  # This should be replaced with the experimental or computational method, e.g. "DAC"
+
+[other]
+notes = "" # This can be used to include any additional notes or comments about the EOS

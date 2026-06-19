@@ -1,0 +1,24 @@
+unique_id = "hollandpowell2011"
+
+[science]
+material = "forsterite"
+formula = "Mg2SiO4"
+phase = "liquid"
+crystal = ""
+
+[description]
+type = "fit"
+cold_type = "modified-tait"
+thermal_exist = true
+thermal_type = "einstein"
+reference_temperature = 298.15
+
+[validity]
+min_p = 0
+max_p = 250
+
+[parameters]
+V_0 = 4.312
+K_0 = 36.2
+K_0_prime = 10.06
+K_0_prime_prime = -0.0278

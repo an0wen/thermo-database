@@ -1,0 +1,24 @@
+unique_id = "hollandpowell2011"
+
+[science]
+material = "fayalite"
+formula = "Fe2SiO4"
+phase = "solid"
+crystal = ""
+
+[description]
+type = "fit"
+cold_type = "modified-tait"
+thermal_exist = true
+thermal_type = "einstein"
+reference_temperature = 298.15
+
+[validity]
+min_p = 0
+max_p = 250
+
+[parameters]
+V_0 = 4.631
+K_0 = 125.6
+K_0_prime = 4.68
+K_0_prime_prime = -0.0037
