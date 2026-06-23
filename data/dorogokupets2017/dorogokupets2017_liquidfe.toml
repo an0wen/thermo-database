@@ -1,0 +1,45 @@
+# This is a template for an EoS parameter file containing metadata about the EoS parameters for a given material,
+# as well as the validity range of the EoS.
+# The unique_id should match the unique_id in the corresponding *_source.toml file.
+
+unique_id = "dorogokupets2017"  # Unique identifier as defined in the *_source.toml, e.g. "miozzi2020"
+
+[science]
+material = "iron"  # Material name, e.g. "iron"
+formula = "Fe"  # Chemical formula, e.g. "Fe"
+phase = "liquid"  # Phase, e.g. "solid"
+crystal = "n/a"  # Crystal structure, e.g. "hcp"
+method = "Experimental Compilation"  # Experimental or computational method, e.g. "DAC"
+
+[description]
+type = "fit" # Type of EOS, e.g. "fit" or "tabulated"
+cold_type = "Vinet"  # Type of isothermal EoS, e.g. "bm3" for Birch-Murnaghan 3rd order
+thermal_exist = true  # True if the EOS includes a thermal component, false if it is purely isothermal
+thermal_type = "einstein+quadratic+magnetic+entropy"  # Type of thermal model, e.g. "debye" for Mie-Gruneisen-Debye
+reference_temperature = 1811  # Reference temperature for the cold curve, e.g. 300 K
+
+[validity]
+# Validity range corresponds to minimum and maximum values in provided tables
+min_p = 2.78777e-14  # Lower boundary in pressure of EOS validity range, e.g. 10e9 = 10 GPa
+max_p = 177.5659438e9  # Upper boundary in pressure of EOS validity range, e.g. 150e9 = 150 GPa
+min_t = 10  # Lower boundary in temperature of EOS validity range, e.g. 300 K
+max_t = 2000  # Upper boundary in pressure of EOS validity range, e.g. 4000 K
+min_rho =  6895.9872274 # Calculated from V  # Lower boundary in density of EOS validity range, e.g. 8e3 kg/m^3
+max_rho =   11698.2950017 # Calculated from V # Upper boundary in pressure of EOS validity range, e.g. 12e3 kg/m^3
+
+[parameters]
+# Parameterization includes additional terms in helmholtz free energy that do not impact density, F=(Isothermal+Thermal terms)+U_0+F_mag(T)-F_mag(T_0)-a_S*R*(T-T_0)
+V_0 = 7.957e-6 # Fit following Anderson, W. W. & Ahrens, T. J. An equation of state for liquid iron and implications for the Earths core. J. Geophys. Res. 99, 4273–4284 (1994)
+rho_0 = 7.018977001e3
+K_0 = 83.7e9
+K_0_prime = 5.97
+theta_0 = 263
+gamma_0 = 2.033
+beta = 1.168
+gamma_inf = 0
+e_0 = 198e-6
+g = 0.884
+T_C = 0
+B_0 = 0
+U_0 = -100.204e3
+a_s = 2.12
