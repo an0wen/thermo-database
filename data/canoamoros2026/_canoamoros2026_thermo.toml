@@ -1,0 +1,23 @@
+unique_id = "canoamoros2026"  
+
+[science]
+material = "water"  
+formula = "H2O"  
+phase = ["ice-Ih", "ice-II", "ice-III", "ice-V", "ice-VI", "ice-VII", "ice-VII*", "ice-X", "liquid", "gas", "supercritical", "superionic"]
+crystal = "superionic: fcc, bcc"  
+method = "
+	Region 1: Gibbs free energy fit to experimental data (with theoretical constraints at low T)
+	Region 2: Gibbs free energy fit to experimental data and statistically calculated vibrational energies
+	Region 3: Helmholtz free energy fit to DFT-MD and static DFT data (validated against experiments)
+	Region 4: Helmholtz free energy fit to experimental data
+	Region 5: Region 5: Generic warm dense matter free energy parametrised with DFT-MD EoS data (bcc and fcc superionic phases)
+	Region 6: chemical equilibrium calculation
+	Region 7: Helmholtz free energy fit to DFT-MD and Thomas-Fermi MD data
+"
+[other]
+notes = "Revised entropy version of AQUA (Haldemann et al. 2020). Corrects a sign error in the Mazevet et al. 2019 free energy entropy term using the Mazevet et al. 2021 revision. Adds superionic phase data from French et al. 2016 (region 5). Table cut at 60000 K. Published in A&A 708, A324 (2026)."
+
+
+- region 3 (FR15) FOR T = [100 - 2000] K entropy data is linearly extrapolated for P > 3e11 Pa
+- region 6 (CEA) only valid up to 2e4 K. T = [2e4 - 6e4] K data is based on extrapolation
+- region 7 (M21) only valid up to 5e4 K. T > 5e4 K data is based on extrapolation

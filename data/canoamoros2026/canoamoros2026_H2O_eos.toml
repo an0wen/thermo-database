@@ -1,0 +1,26 @@
+unique_id = "canoamoros2026"  
+
+[science]
+material = "water"
+formula = "H2O"
+phase = ["ice-Ih", "ice-II", "ice-III", "ice-V", "ice-VI", "ice-VII", "ice-VII*", "ice-X", "liquid", "gas", "supercritical", "superionic"]
+crystal = "superionic: fcc, bcc"  
+method = ["DFT-MD", "TF-MD", "analytical fit", "tabulated"]
+
+[description]
+type = "tabulated" 
+thermal_exist = true  
+reference_temperature = 300  # Reference temperature used to connect original AQUA to new M21
+
+[validity]
+min_p =  0.1 
+max_p =  4e14 
+min_t =  100 
+max_t =  60000 
+min_rho =  10e-10 
+max_rho = 10e5 
+
+[parameters]
+
+[other]
+notes = "For phase boundaries and interpolation regions see section 2 of Cano Amoros et al. (2026)\n\nApplied constant entropy shifts:\n+425 J/kgK to M21\n\nApplied constant internal energy shifts:\n+6.32128736e5 J/kg to M21\n+7.7e7 J/kg to F16"
