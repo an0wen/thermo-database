@@ -1,4 +1,5 @@
 # This is a template for metadata about experimental/computational data for a given material.
+# This file must be accompanied by the corresponding "_thermo.dat" containing the thermodynamic data
 # The unique_id should match the unique_id in the corresponding *_source.toml file.
 unique_id = "template"  # Unique identifier as defined in the *_source.toml, e.g. "miozzi2020"
 
