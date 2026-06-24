@@ -1,0 +1,45 @@
+# This is a template for an EoS parameter file containing metadata about the EoS parameters for a given material,
+# as well as the validity range of the EoS.
+# The unique_id should match the unique_id in the corresponding *_source.toml file.
+
+unique_id = "dorogokupets2017"  # Unique identifier as defined in the *_source.toml, e.g. "miozzi2020"
+
+[science]
+material = "iron"  # Material name, e.g. "iron"
+formula = "Fe"  # Chemical formula, e.g. "Fe"
+phase = "solid"  # Phase, e.g. "solid"
+crystal = "bcc"  # Crystal structure, e.g. "hcp"
+method = "Experimental Compilation"  # Experimental or computational method, e.g. "DAC"
+
+[description]
+type = "fit" # Type of EOS, e.g. "fit" or "tabulated"
+cold_type = "Vinet"  # Type of isothermal EoS, e.g. "bm3" for Birch-Murnaghan 3rd order
+thermal_exist = true  # True if the EOS includes a thermal component, false if it is purely isothermal
+thermal_type = "einstein+quadratic+magnetic+entropy"  # Type of thermal model, e.g. "debye" for Mie-Gruneisen-Debye
+reference_temperature = 298.15  # Reference temperature for the cold curve, e.g. 300 K
+
+[validity]
+# Validity range corresponds to minimum and maximum values in provided tables
+min_p = 0.0001e9  # Lower boundary in pressure of EOS validity range, e.g. 10e9 = 10 GPa
+max_p = 311.5673364e9  # Upper boundary in pressure of EOS validity range, e.g. 150e9 = 150 GPa
+min_t = 10  # Lower boundary in temperature of EOS validity range, e.g. 300 K
+max_t = 2000  # Upper boundary in pressure of EOS validity range, e.g. 4000 K
+min_rho = 7175.1110202 # Calculated from V  # Lower boundary in density of EOS validity range, e.g. 8e3 kg/m^3
+max_rho = 13125.1175033 # Calculated from V # Upper boundary in pressure of EOS validity range, e.g. 12e3 kg/m^3
+
+[parameters]
+# Parameterization includes additional terms in helmholtz free energy that do not impact density, F=(Isothermal+Thermal terms)+U_0+F_mag(T)-F_mag(T_0)-a_S*R*(T-T_0)
+V_0 = 7.092e-6
+rho_0 = 7.875070502e3
+K_0 = 164e9
+K_0_prime = 5.50
+theta_0 = 303
+gamma_0 = 1.736
+beta = 1.125
+gamma_inf = 0
+e_0 = 198e-6
+g = 1.
+T_C = 1043
+B_0 = 2.22
+U_0 = 0
+a_s = 0
