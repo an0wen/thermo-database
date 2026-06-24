@@ -1,6 +1,6 @@
 from eosdatabase import EOSDatabase
 
-
+# main program
 def main():
 
     db = EOSDatabase("./data")
