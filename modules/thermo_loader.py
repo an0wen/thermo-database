@@ -120,7 +120,7 @@ def load_single_thermo(path_dat: Path) -> pd.DataFrame:
 
 
 
-def scan_thermo_tables(dir_data: str | Path) -> pd.DataFrame:
+def scan_thermo_tables(dir_data, verbose=0) -> pd.DataFrame:
     """
     Scan all folders recursively and merge thermo tables.
     """
@@ -138,7 +138,7 @@ def scan_thermo_tables(dir_data: str | Path) -> pd.DataFrame:
             df = load_single_thermo(path_dat)
             dfs.append(df)
 
-            print(f"Loaded: {path_dat}")
+            if verbose==1: print(f"Loaded thermo file: {path_dat}")
 
         except Exception as e:
             print(f"Failed loading {path_dat}")
@@ -149,7 +149,7 @@ def scan_thermo_tables(dir_data: str | Path) -> pd.DataFrame:
 
     return pd.concat(dfs, ignore_index=True)
 
-def scan_eos(dir_data):
+def scan_eos(dir_data, verbose=0):
     """
     Scan all folders recursively and merge information about eos.
     """
@@ -163,8 +163,15 @@ def scan_eos(dir_data):
         if path_dat.parts[1].startswith("_") or path_dat.parts[2].startswith("_"):
             continue
 
-        with open(path_dat,"rb") as f:
-            meta = tomllib.load(f)
+        try:
+            with open(path_dat,"rb") as f:
+                meta = tomllib.load(f)
+
+            if verbose==1: print(f"Loaded EOS file: {path_dat}")
+
+        except Exception as e:
+            print(f"Failed loading {path_dat}")
+            print(e)
 
         row = {}
 
@@ -195,7 +202,7 @@ def scan_eos(dir_data):
     return pd.DataFrame(rows)
 
 
-def scan_sources(dir_data):
+def scan_sources(dir_data, verbose=1):
     """
     Scan all folders recursively and merge information about sources.
     """
@@ -207,8 +214,15 @@ def scan_sources(dir_data):
         if file.parts[0]=="_":
             continue
 
-        with open(file,"rb") as f:
-            meta = tomllib.load(f)
+        try:
+            with open(file,"rb") as f:
+                meta = tomllib.load(f)
+
+            if verbose==1: print(f"Loaded EOS file: {file}")
+
+        except Exception as e:
+            print(f"Failed loading {file}")
+            print(e)
 
         row = {}
 

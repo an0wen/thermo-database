@@ -11,15 +11,17 @@ from modules.thermo_loader import *
 
 class EOSDatabase:
 
-    def __init__(self, dir_data: str):
+    def __init__(self, dir_data, verbose=0):
 
         self.dir_data = dir_data
 
-        self.df_thermo = scan_thermo_tables(dir_data)
+        self.verbose = verbose
 
-        self.df_sources = scan_sources(dir_data)
+        self.df_thermo = scan_thermo_tables(dir_data, self.verbose)
 
-        self.df_eos = scan_eos(dir_data)
+        self.df_sources = scan_sources(dir_data, self.verbose)
+
+        self.df_eos = scan_eos(dir_data, self.verbose)
     # -------------------------------------------------
     # Basic filtering
     # -------------------------------------------------
