@@ -5,6 +5,17 @@ import pandas as pd
 import tomllib
 
 
+def print_eos(eos):
+    
+    print_science(eos)
+    print()
+    print_description(eos)
+    print()
+    print_validity(eos)
+    print()
+    print_parameters(eos)
+    print()
+
 def print_science(eos):
 
     print("Science of entry: ",eos["entry"])

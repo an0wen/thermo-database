@@ -138,7 +138,7 @@ def scan_thermo_tables(dir_data, verbose=0) -> pd.DataFrame:
             df = load_single_thermo(path_dat)
             dfs.append(df)
 
-            if verbose==1: print(f"Loaded thermo file: {path_dat}")
+            if verbose==1: print(f"Loaded thermo-data file: {path_dat}")
 
         except Exception as e:
             print(f"Failed loading {path_dat}")
@@ -202,38 +202,43 @@ def scan_eos(dir_data, verbose=0):
     return pd.DataFrame(rows)
 
 
-def scan_sources(dir_data, verbose=1):
+def scan_sources(dir_data, verbose=0):
     """
     Scan all folders recursively and merge information about sources.
     """
 
+    dir_data = Path(dir_data)
+
     rows = []
 
-    for file in Path(dir_data).rglob("*_source.toml"):
-        # skip folders starting with _
-        if file.parts[0]=="_":
+    for path_dat in Path(dir_data).rglob("*_source.toml"):
+        # skip folders and files starting with _
+        if path_dat.parts[1].startswith("_") or path_dat.parts[2].startswith("_"):
             continue
 
         try:
-            with open(file,"rb") as f:
+            with open(path_dat,"rb") as f:
                 meta = tomllib.load(f)
 
-            if verbose==1: print(f"Loaded EOS file: {file}")
+            if verbose==1: print(f"Loaded source file: {path_dat}")
 
         except Exception as e:
-            print(f"Failed loading {file}")
+            print(f"Failed loading {path_dat}")
             print(e)
 
         row = {}
 
-        for section, content in meta.items():
-            if not isinstance(content,dict):
-                continue
+        # for section, content in meta.items():
+        #     if not isinstance(content,dict):
+        #         continue
 
-            for key, value in content.items():
-                row[f"{section}_{key}"] = value
+        #     for key, value in content.items():
+        #         row[f"{section}_{key}"] = value
 
-        row["source_file"] = (file.name)
+        for key, value in meta.items():
+            row[f"{key}"] = value
+
+        row["source_file"] = (path_dat.name)
 
         rows.append(row)
 

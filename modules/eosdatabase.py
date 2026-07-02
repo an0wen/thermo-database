@@ -5,6 +5,7 @@ from pathlib import Path
 from datetime import datetime
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+from tabulate import tabulate
 
 from modules.thermo_loader import *
 
@@ -19,9 +20,11 @@ class EOSDatabase:
 
         self.df_thermo = scan_thermo_tables(dir_data, self.verbose)
 
-        self.df_sources = scan_sources(dir_data, self.verbose)
+        self.df_source = scan_sources(dir_data, self.verbose)
 
         self.df_eos = scan_eos(dir_data, self.verbose)
+
+        print(f"All data loaded successfully from {dir_data}.")
     # -------------------------------------------------
     # Basic filtering
     # -------------------------------------------------
@@ -53,13 +56,29 @@ class EOSDatabase:
     # Convenience methods
     # -------------------------------------------------
 
-    def columns_thermo(self):
-
-        return list(self.df_thermo.columns)
-    
     def columns_source(self):
 
         return list(self.df_source.columns)
+
+    def columns_thermo(self):
+
+        return list(self.df_thermo.columns)
+
+    def columns_eos(self):
+
+        return list(self.df_eos.columns)
+    
+    def show_unique_eos(self):
+
+        print(
+            tabulate(
+                self.df_eos[["entry"]],
+                headers=["index", "entry"],
+                tablefmt="plain",
+                showindex=True,
+                colalign=("right", "left"),   # index, column
+            )
+        )
 
     def unique_thermo(self, field: str):
 
