@@ -1,0 +1,42 @@
+unique_id = "sakai2016"
+
+[science]
+material = "post-perovskite"
+formula = "MgSiO3"
+phase = "solid"
+crystal = "post-perovskite"
+method = "DFT"
+
+[description]
+type = "fit"
+cold_type = "Keane"
+thermal_exist = true
+thermal_type = "mie-gruneisen-debye"
+reference_temperature = 300  # K
+
+[validity]
+# Ab initio (fit8) calibration range
+min_p = 1e5       # Pa (referenced at 1 bar, 300 K)
+max_p = 1200e9    # Pa
+min_t = 300       # K
+max_t = 5000      # K
+min_rho = 3636    # kg/m^3  (evaluated over the validity box)
+max_rho = 9779    # kg/m^3
+
+[parameters]
+# Sakai et al. (2016), Table 1, "fit8" (ab initio, Keane model). Keane cold
+# equation of state; Mie-Grueneisen-Debye thermal model with an Al'tshuler
+# Grueneisen parameter gamma(V) = gamma_inf + (gamma_0 - gamma_inf)(V/V0)^beta.
+# For fit8, beta was a free parameter (not the beta = gamma_0/(gamma_0 -
+# gamma_inf) relation). Unit-cell volume V0 = 164.22 A^3 with Z = 4; V_0
+# below is the molar volume.
+V_0 = 2.472390e-5   # m^3/mol
+rho_0 = 4060.32     # kg/m^3
+K_0 = 205.4e9       # Pa
+K_0_prime = 5.069
+K_inf_prime = 2.627
+theta_0 = 995.0     # K
+gamma_0 = 1.495
+gamma_inf = 0.818
+beta = 1.97
+n_atoms = 5

@@ -1,0 +1,49 @@
+unique_id = "sokolova2022"
+
+[science]
+material = "clinoenstatite"
+formula = "MgSiO3"
+phase = "solid"
+crystal = "low-pressure clinoenstatite (P2_1/c)"
+method = "Experimental Compilation"
+
+[description]
+type = "fit"
+cold_type = "Kunc"
+thermal_exist = true
+thermal_type = "dual-einstein + anharmonic"
+reference_temperature = 298.15  # K
+
+[validity]
+min_p = 1e5       # Pa (1 bar reference)
+max_p = 12e9      # Pa
+min_t = 298.15    # K
+max_t = 2000      # K
+min_rho = 2987    # kg/m^3  (evaluated over the validity box)
+max_rho = 3478    # kg/m^3
+
+[parameters]
+# Sokolova et al. (2022), Table 2 (low-pressure clinoenstatite). Kunc cold
+# equation of state (fixed k = 5, reducing to the Holzapfel HO2 form). Thermal
+# model is a dual-Einstein oscillator (characteristic temperatures theta_1,
+# theta_2 with weights m_1, m_2; m_1 + m_2 = 3 n) plus an anharmonic term
+# F_anh = -(3/2) n R a_0 (V/V0)^m_anh T^2, with an Al'tshuler Grueneisen
+# gamma(V) = gamma_inf + (gamma_0 - gamma_inf)(V/V0)^beta. theta_1, theta_2,
+# m_1, m_2 are shared across the three MgSiO3 pyroxene polymorphs; a_0, m_anh
+# are per phase (zero here). No anharmonic term for this phase.
+U_0 = -1565100.0    # J/mol (Table 2: -1565.1 kJ/mol)
+V_0 = 3.128000e-5   # m^3/mol (Table 2: 31.28 cm^3/mol)
+rho_0 = 3209.30     # kg/m^3
+K_0 = 112.8e9       # Pa
+K_0_prime = 6.27
+theta_1 = 327.0     # K
+theta_2 = 973.0     # K
+m_1 = 6.785
+m_2 = 8.215
+gamma_0 = 0.98
+gamma_inf = 0.0
+beta = 0.6
+a_0 = 0.0           # 1/K (no anharmonic term)
+m_anh = 1.0
+k = 5
+n_atoms = 5

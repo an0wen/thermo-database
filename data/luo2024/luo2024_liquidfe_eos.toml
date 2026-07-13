@@ -1,0 +1,40 @@
+unique_id = "luo2024"
+
+[science]
+material = "iron"
+formula = "Fe"
+phase = "liquid"
+crystal = "n/a"
+method = "AIMD"
+
+[description]
+type = "fit"
+cold_type = "bm3"
+thermal_exist = true
+thermal_type = "linear-in-T + quadratic-in-compression"
+reference_temperature = 8000  # K
+
+[validity]
+# Calibration range of the AIMD fit (Luo et al. 2024, Methods)
+min_p = 50e9      # Pa
+max_p = 1300e9    # Pa
+min_t = 8000      # K
+max_t = 14000     # K
+min_rho = 7270    # kg/m^3  (evaluated over the validity box)
+max_rho = 19008   # kg/m^3
+
+[parameters]
+# Luo et al. (2024), Methods, Eq. (14). Cold curve is a 3rd-order
+# Birch-Murnaghan isotherm referenced to T0 = 8000 K. Thermal pressure is
+#   P_th = ((T - T0) / 1000 K) * [ a + b (V0/V) + c (V0/V)^2 ].
+# The paper prints a, b, c as bare numbers; they carry units of GPa
+# (dimensional requirement), converted to Pa here. V0 is for a 64-atom
+# supercell (1043.912 A^3); V_0 below is the molar volume.
+V_0 = 9.822789e-6   # m^3/mol
+rho_0 = 5685.25     # kg/m^3  (reference density at V0)
+K_0 = 49.249e9      # Pa
+K_0_prime = 4.976
+a = -15.957e9       # Pa
+b = 20.946e9        # Pa
+c = -3.811e9        # Pa
+n_atoms = 1

@@ -1,0 +1,56 @@
+unique_id = "luodeng2025"
+
+[science]
+material = "magnesium silicate"
+formula = "MgSiO3"
+phase = "liquid"
+crystal = "n/a"
+method = "AIMD"
+
+[description]
+type = "fit"
+cold_type = "Vinet"
+thermal_exist = true
+thermal_type = "rtpress"
+reference_temperature = 3000  # K (RTpress reference adiabat T0)
+
+[validity]
+min_p = 1e5       # Pa
+max_p = 1200e9    # Pa
+min_t = 2200      # K
+max_t = 14000     # K
+min_rho = 2214    # kg/m^3  (evaluated over the validity box)
+max_rho = 10324   # kg/m^3
+
+[parameters]
+# RTpress formalism (Wolf & Bower 2018, doi:10.1016/j.pepi.2018.02.004);
+# parameter set from Luo & Deng (2025), Table 1 ("This study"), an AIMD
+# recalibration of MgSiO3 melt to terapascal pressures.
+#
+# ATOMIC BASIS (as published, not SI): V in A^3/atom, P in GPa, energies in
+# eV/atom. Reference isotherm is Vinet at T0. Thermal potential energy
+#   E_pot(V,T) = E_pot(V,T0) + b(V) * [ (T/T0)^m - 1 ],
+#   b(V) = sum_{n=0}^{4} b_n (V/V0 - 1)^n,
+# with reference-adiabat Grueneisen parameters gamma_0 and
+# gamma_0_prime = V0 (d gamma / d V)_0. m is fixed at 3/5.
+#
+# NOTE on the b_n and E_0 units: although Luo & Deng (2025) Table 1 tabulates
+# these in eV/atom, in the RTpress implementation the Boltzmann constant
+# already absorbs the eV -> GPa*A^3 conversion, so b_0..b_4 enter the free
+# energy directly and must NOT be rescaled. Dividing them by the ~160.22
+# GPa*A^3/eV factor (as the tabulated units would suggest) suppresses the
+# thermal pressure by ~160x.
+V_0 = 14.352        # A^3/atom
+K_0 = 13.53         # GPa
+K_0_prime = 6.767
+E_0 = -6.399        # eV/atom
+gamma_0 = 0.158
+gamma_0_prime = -1.710
+m = 0.6
+b_0 = 1.763         # eV/atom
+b_1 = 0.982         # eV/atom
+b_2 = 2.11          # eV/atom
+b_3 = 0.37          # eV/atom
+b_4 = 1.9           # eV/atom
+n_atoms = 5
+rho_0 = 2322.97     # kg/m^3  (reference density at V0, 5 atoms/formula unit)

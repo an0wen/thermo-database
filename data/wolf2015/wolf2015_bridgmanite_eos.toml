@@ -1,0 +1,39 @@
+unique_id = "wolf2015"
+
+[science]
+material = "bridgmanite"
+formula = "MgSiO3"
+phase = "solid"
+crystal = "perovskite"
+method = "XRD"
+
+[description]
+type = "fit"
+cold_type = "Vinet"
+thermal_exist = true
+thermal_type = "mie-gruneisen-debye"
+reference_temperature = 300  # K
+
+[validity]
+min_p = 20e9      # Pa
+max_p = 140e9     # Pa
+min_t = 300       # K
+max_t = 2500      # K
+min_rho = 4149    # kg/m^3  (evaluated over the validity box)
+max_rho = 5543    # kg/m^3
+
+[parameters]
+# Wolf et al. (2015), Table 3, "0% Fe" (pure MgSiO3) column. Vinet cold
+# curve referenced to 300 K; Mie-Grueneisen-Debye thermal model with a
+# power-law Grueneisen parameter gamma(V) = gamma_0 (V/V0)^q. Theta_0 was
+# fixed (not fitted) at 1000 K. Unit-cell volume V0 = 162.12 A^3 with Z = 4;
+# V_0 below is the molar volume. The 0% Fe end-member is a reanalysis of the
+# Tange et al. (2012) data set.
+V_0 = 2.440774e-5   # m^3/mol
+rho_0 = 4112.92     # kg/m^3
+K_0 = 262.3e9       # Pa
+K_0_prime = 4.044
+theta_0 = 1000.0    # K
+gamma_0 = 1.675
+q = 1.39
+n_atoms = 5

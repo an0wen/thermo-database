@@ -1,0 +1,46 @@
+unique_id = "sokolova2022"
+
+[science]
+material = "clinoenstatite"
+formula = "MgSiO3"
+phase = "solid"
+crystal = "high-pressure clinoenstatite (C2/c)"
+method = "Experimental Compilation"
+
+[description]
+type = "fit"
+cold_type = "Kunc"
+thermal_exist = true
+thermal_type = "dual-einstein + anharmonic"
+reference_temperature = 298.15  # K
+
+[validity]
+min_p = 1e5       # Pa (1 bar reference)
+max_p = 12e9      # Pa
+min_t = 298.15    # K
+max_t = 2000      # K
+min_rho = 3120    # kg/m^3  (evaluated over the validity box)
+max_rho = 3575    # kg/m^3
+
+[parameters]
+# Sokolova et al. (2022), Table 2 (high-pressure clinoenstatite). Kunc cold
+# EoS (k = 5). Dual-Einstein + anharmonic thermal model (see the
+# LP-clinoenstatite entry for the full functional form). No anharmonic term
+# for this phase. Above ~40-50 GPa this polymorph transforms and the EoS is
+# outside its intended domain (Sokolova et al. 2022).
+U_0 = -1559100.0    # J/mol (Table 2: -1559.1 kJ/mol)
+V_0 = 3.031000e-5   # m^3/mol (Table 2: 30.31 cm^3/mol)
+rho_0 = 3312.01     # kg/m^3
+K_0 = 128.4e9       # Pa
+K_0_prime = 4.52
+theta_1 = 327.0     # K
+theta_2 = 973.0     # K
+m_1 = 6.785
+m_2 = 8.215
+gamma_0 = 0.98
+gamma_inf = 0.0
+beta = 0.6
+a_0 = 0.0           # 1/K (no anharmonic term)
+m_anh = 1.0
+k = 5
+n_atoms = 5

@@ -1,0 +1,38 @@
+unique_id = "wolf2015"
+
+[science]
+material = "bridgmanite"
+formula = "(Mg0.87Fe0.13)SiO3"
+phase = "solid"
+crystal = "perovskite"
+method = "XRD"
+
+[description]
+type = "fit"
+cold_type = "Vinet"
+thermal_exist = true
+thermal_type = "mie-gruneisen-debye"
+reference_temperature = 300  # K
+
+[validity]
+min_p = 30e9      # Pa
+max_p = 132e9     # Pa
+min_t = 300       # K
+max_t = 2500      # K
+min_rho = 4494    # kg/m^3  (evaluated over the validity box)
+max_rho = 5730    # kg/m^3
+
+[parameters]
+# Wolf et al. (2015), Table 3, "13% Fe" column: (Mg0.87Fe0.13)SiO3, the
+# primary new measurement of that study (laser-heated DAC XRD). Vinet cold
+# curve referenced to 300 K; Mie-Grueneisen-Debye with power-law Grueneisen
+# gamma(V) = gamma_0 (V/V0)^q; Theta_0 fixed at 1000 K. Unit-cell volume
+# V0 = 163.16 A^3 with Z = 4; V_0 below is the molar volume.
+V_0 = 2.456431e-5   # m^3/mol
+rho_0 = 4253.62     # kg/m^3
+K_0 = 243.8e9       # Pa
+K_0_prime = 4.160
+theta_0 = 1000.0    # K
+gamma_0 = 1.400
+q = 0.56
+n_atoms = 5

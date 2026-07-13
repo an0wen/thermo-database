@@ -1,0 +1,47 @@
+unique_id = "sokolova2022"
+
+[science]
+material = "orthoenstatite"
+formula = "MgSiO3"
+phase = "solid"
+crystal = "orthoenstatite (Pbca)"
+method = "Experimental Compilation"
+
+[description]
+type = "fit"
+cold_type = "Kunc"
+thermal_exist = true
+thermal_type = "dual-einstein + anharmonic"
+reference_temperature = 298.15  # K
+
+[validity]
+min_p = 1e5       # Pa (1 bar reference)
+max_p = 12e9      # Pa
+min_t = 298.15    # K
+max_t = 2000      # K
+min_rho = 2914    # kg/m^3  (evaluated over the validity box)
+max_rho = 3470    # kg/m^3
+
+[parameters]
+# Sokolova et al. (2022), Table 2 (orthoenstatite). Kunc cold EoS (k = 5).
+# Dual-Einstein + anharmonic thermal model (see the LP-clinoenstatite entry
+# for the full functional form). This is the only one of the three pyroxene
+# polymorphs with a nonzero anharmonic term (a_0 = 13e-6 1/K, m_anh = 1).
+# Note: Table 2 prints V0 = 31.35 cm^3/mol; the value 31.347 used here is the
+# higher-precision figure (supplementary data).
+U_0 = -1564600.0    # J/mol (Table 2: -1564.6 kJ/mol)
+V_0 = 3.134700e-5   # m^3/mol (31.347 cm^3/mol; Table 2 prints 31.35)
+rho_0 = 3202.44     # kg/m^3
+K_0 = 106.2e9       # Pa
+K_0_prime = 7.80
+theta_1 = 327.0     # K
+theta_2 = 973.0     # K
+m_1 = 6.785
+m_2 = 8.215
+gamma_0 = 1.0
+gamma_inf = 0.0
+beta = 1.0
+a_0 = 13.0e-6       # 1/K
+m_anh = 1.0
+k = 5
+n_atoms = 5
