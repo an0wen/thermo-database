@@ -1,0 +1,29 @@
+unique_id = "attia2026"
+
+[science]
+material = "iron"
+formula = "Fe"
+phase = ["alpha-bcc", "delta-bcc", "gamma-fcc", "epsilon-hcp", "liquid"]
+crystal = "bcc, fcc, hcp"
+method = ["experimental compilation", "DFT", "AIMD", "tabulated"]
+
+[description]
+type = "tabulated"
+thermal_exist = true
+reference_temperature = 300  # nominal; per-phase reference states are set at the triple point (see notes)
+
+[validity]
+# Domain of the released PALEOS iron table (150 points per decade)
+min_p = 1e5       # Pa
+max_p = 1e14      # Pa
+min_t = 300       # K
+max_t = 1e5       # K
+min_rho = 5210    # kg/m^3
+max_rho = 100872  # kg/m^3
+
+[parameters]
+# Tabulated EoS; no closed-form parameter set. Per-phase parameters are the
+# single-source entries: dorogokupets2017, miozzi2020, hakim2018, luo2024.
+
+[other]
+notes = "PALEOS composite iron EoS, tabulated on a 150 points-per-decade (log P, log T) grid. Phase EoS: Dorogokupets et al. (2017) for alpha/delta-bcc and gamma-fcc; a smooth blend of Miozzi et al. (2020) and Hakim et al. (2018) across ~210-410 GPa for epsilon-hcp; Luo et al. (2024) for the liquid. Phase boundaries from Dorogokupets et al. (2017); melting curve from Anzellini et al. (2013). Per-phase reference states (U0, S0) are calibrated jointly so that Delta S > 0 across every heating-accessible boundary and Gibbs energy is continuous at the fcc-hcp-liquid triple point (98.5 GPa, 3712 K); this cross-phase consistency is what distinguishes the composite from the individual single-source entries. Grid columns: P, T, rho, u, s, cp, cv, alpha, nabla_ad, phase. Full tables (150 and 600 ppd) are on Zenodo (concept DOI 10.5281/zenodo.19000315). Companion paper Attia et al. (2026), in revision; citation and DOI to be updated on publication."

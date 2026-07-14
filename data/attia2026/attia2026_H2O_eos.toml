@@ -1,0 +1,29 @@
+unique_id = "attia2026"
+
+[science]
+material = "water"
+formula = "H2O"
+phase = ["ice-Ih", "ice-II", "ice-III", "ice-V", "ice-VI", "ice-VII", "ice-X", "liquid", "vapor", "supercritical"]
+crystal = "ice polymorphs Ih-X"
+method = ["tabulated"]
+
+[description]
+type = "tabulated"
+thermal_exist = true
+reference_temperature = 300  # reference used for the Mazevet et al. (2019) entropy correction
+
+[validity]
+# Domain of the released PALEOS water table (150 points per decade),
+# inherited from AQUA
+min_p = 0.1       # Pa
+max_p = 1e14      # Pa
+min_t = 100       # K
+max_t = 1e5       # K
+min_rho = 1e-4    # kg/m^3 (low-pressure vapor limit)
+max_rho = 48219   # kg/m^3
+
+[parameters]
+# Tabulated EoS; no closed-form parameter set.
+
+[other]
+notes = "The composite AQUA EoS (Haldemann et al. 2020) regridded to 150 points per decade, with a correction to the Mazevet et al. (2019) Helmholtz parametrization used in the AQUA supercritical/superionic region: a sign error in the F_T term, and a reference-entropy revision from 4.9 to 9.8 kB per atom. Both corrections are functions of temperature only, so they shift entropy and internal energy but leave pressure and density unchanged, and are gated analytically to the AQUA Region-7 blend bands where AQUA actually uses the Mazevet parametrization. This is distinct from canoamoros2026 (revised AQUA), which instead adopts the Mazevet et al. (2021) revision and French et al. (2016) superionic data; the two are independent corrected-AQUA variants and are useful to compare. Grid columns: P, T, rho, u, s, cp, cv, alpha, nabla_ad, phase. Full table on Zenodo (concept DOI 10.5281/zenodo.19000315). Companion paper Attia et al. (2026), in revision."

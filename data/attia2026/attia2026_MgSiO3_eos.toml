@@ -1,0 +1,31 @@
+unique_id = "attia2026"
+
+[science]
+material = "magnesium silicate"
+formula = "MgSiO3"
+phase = ["lp-clinoenstatite", "orthoenstatite", "hp-clinoenstatite", "bridgmanite", "post-perovskite", "liquid"]
+crystal = "clinoenstatite (P2_1/c, C2/c), orthoenstatite (Pbca), perovskite (Pbnm), post-perovskite (Cmcm)"
+method = ["experimental compilation", "DFT", "AIMD", "tabulated"]
+
+[description]
+type = "tabulated"
+thermal_exist = true
+reference_temperature = 300  # nominal; per-phase reference states are set at the triple point (see notes)
+
+[validity]
+# Domain of the released PALEOS MgSiO3 table (150 points per decade).
+# Nonrectangular: nodes where the RTpress liquid does not converge (low-P,
+# high-T vapor/supercritical regime) are omitted.
+min_p = 1e5       # Pa
+max_p = 1e14      # Pa
+min_t = 300       # K
+max_t = 1e5       # K
+min_rho = 1162    # kg/m^3
+max_rho = 68240   # kg/m^3
+
+[parameters]
+# Tabulated EoS; no closed-form parameter set. Per-phase parameters are the
+# single-source entries: sokolova2022, wolf2015, sakai2016, luodeng2025.
+
+[other]
+notes = "PALEOS composite MgSiO3 EoS, tabulated on a 150 points-per-decade (log P, log T) grid; nonrectangular (about 65% of nodes valid) because the low-P high-T vapor/supercritical regime is outside scope. Phase EoS: Sokolova et al. (2022) for the LP-clino, ortho, and HP-clino enstatite pyroxenes; Wolf et al. (2015) for bridgmanite; Sakai et al. (2016) for post-perovskite; the RTpress model of Wolf & Bower (2018) with the Luo & Deng (2025) parameter set for the liquid. Phase boundaries from Sokolova et al. (2022) and Ono & Oganov (2005); melting curve from Belonoshko et al. (2005) below ~2.55 GPa and Fei et al. (2021) above. Per-phase reference states are calibrated jointly for Delta S > 0 across every heating-accessible boundary, the Stebbins et al. (1984) fusion anchor at 1 bar and 1831 K, and Gibbs continuity at the brg-ppv-liquid triple point (155.7 GPa, 6168 K). Grid columns: P, T, rho, u, s, cp, cv, alpha, nabla_ad, phase. Full tables (150 and 600 ppd) are on Zenodo (concept DOI 10.5281/zenodo.19000315). Companion paper Attia et al. (2026), in revision."
