@@ -6,9 +6,11 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 from tabulate import tabulate
+from copy import deepcopy
 
-from modules.thermo_loader import *
-
+from . import loader
+from . import plotter
+from . import filterer
 
 class EOSDatabase:
 
@@ -18,39 +20,13 @@ class EOSDatabase:
 
         self.verbose = verbose
 
-        self.df_thermo = scan_thermo_tables(dir_data, self.verbose)
+        self.df_thermo = loader.load_thermo(dir_data, self.verbose)
 
-        self.df_source = scan_sources(dir_data, self.verbose)
+        self.df_source = loader.load_sources(dir_data, self.verbose)
 
-        self.df_eos = scan_eos(dir_data, self.verbose)
+        self.df_eos = loader.load_eos(dir_data, self.verbose)
 
         print(f"All data loaded successfully from {dir_data}.")
-    # -------------------------------------------------
-    # Basic filtering
-    # -------------------------------------------------
-
-    def filter_out(
-        self,
-        field: str,
-        contains: str,
-    ) -> "EOSDatabase":
-        """
-        Return filtered copy.
-        """
-
-        db_new = EOSDatabase.__new__(EOSDatabase)
-
-        db_new.dir_data = self.dir_data
-
-        mask = (
-            self.df_thermo[field]
-            .astype(str)
-            .str.contains(contains, case=False, na=False)
-        )
-
-        db_new.df_thermo = self.df_thermo[mask].copy()
-
-        return db_new
 
     # -------------------------------------------------
     # Convenience methods
@@ -204,152 +180,9 @@ class EOSDatabase:
         print(f"File: {path_output}")
         print(f"Rows exported: {len(self.df_thermo)}")
 
-    def plot_rhopt(self,plt_show=True):
+    def plot_thermo_rhopt(self,plt_show=True):
 
-        # ---------------------------------
-        # Required columns
-        # ---------------------------------
-
-        required = [
-            "rho[kg/m^3]",
-            "P[Pa]",
-            "T[K]",
-            "entry",
-        ]
-
-        missing = [
-            col for col in required
-            if col not in self.df_thermo.columns
-        ]
-
-        if missing:
-            print(
-                f"Missing required columns: {missing}"
-            )
-            return
-
-        # ---------------------------------
-        # Unique datasets
-        # ---------------------------------
-
-        unique_ids = sorted(
-            self.df_thermo["entry"]
-            .dropna()
-            .unique()
-        )
-
-        n_ids = len(unique_ids)
-
-        print(f"Found {n_ids} entries")
-
-        if n_ids > 10:
-
-            print(
-                "ERROR: More than 10 entries.\n"
-                "Aborting to avoid unreadable plot."
-            )
-
-            return
-
-        # ---------------------------------
-        # Marker styles
-        # ---------------------------------
-
-        markers = [
-            "o",
-            "s",
-            "^",
-            "D",
-            "v",
-            "P",
-            "X",
-            "*",
-            "<",
-            ">",
-        ]
-
-        # ---------------------------------
-        # Create figure
-        # ---------------------------------
-
-        fig, ax = plt.subplots(
-            figsize=(8, 6)
-        )
-
-        # ---------------------------------
-        # Global temperature normalization
-        # ---------------------------------
-
-        Tmin = self.df_thermo["T[K]"].min()
-        Tmax = self.df_thermo["T[K]"].max()
-
-        norm = mcolors.Normalize(
-            vmin=Tmin,
-            vmax=Tmax,
-        )
-
-
-        # ---------------------------------
-        # Plot each dataset separately
-        # ---------------------------------
-
-        for marker, uid in zip(markers, unique_ids):
-
-            sub = self.df_thermo[
-                self.df_thermo["entry"] == uid
-            ]
-
-            sc = ax.scatter(
-                sub["rho[kg/m^3]"],
-                sub["P[Pa]"] * 1e-9,
-                c=sub["T[K]"],
-                norm=norm,
-                marker=marker,
-                s=40,
-                alpha=0.8,
-                label=uid,
-            )
-
-        # ---------------------------------
-        # Axes
-        # ---------------------------------
-
-        ax.set_xlabel(r"$\rho$ [kg/m$^3$]")
-        ax.set_ylabel(r"$P$ [GPa]")
-
-        ax.set_xscale("log")
-        ax.set_yscale("log")
-
-        # ---------------------------------
-        # Colorbar
-        # ---------------------------------
-
-        cbar = plt.colorbar(sc, ax=ax)
-
-        cbar.set_label(r"$T$ [K]")
-
-        # ---------------------------------
-        # Legend
-        # ---------------------------------
-
-        ax.legend(
-            title="Entry",
-            fontsize=8,
-        )
-
-        # ---------------------------------
-        # Cosmetics
-        # ---------------------------------
-
-        ax.grid(
-            alpha=0.3,
-            which="both",
-        )
-
-        plt.tight_layout()
-
-        if plt_show == True: plt.show()
-
+        plotter.plot_thermo_rhopt(self.df_thermo,plt_show)
 
  
     def print_species_eos(self):
@@ -440,6 +273,23 @@ class EOSDatabase:
         eos = (match.iloc[0].dropna().to_dict())
 
         return eos
+    
+    def filter(
+        self,
+        field,
+        **kwargs) -> "EOSDatabase":
+        """
+        Return filtered copy.
+        Expected kwargs:
+        - contains=None: string that the field must contain
+        - remove=None: string for things to remove
+        - keep_empty=True: bool, keep fields that are empty
+        """
+
+        db_new = deepcopy(self)
+
+        db_new = filterer.filter(db_new, field, **kwargs)
+        return db_new
 
     def __repr__(self):
 
