@@ -31,7 +31,7 @@ if __name__ == "__main__":
     df2 = pd.DataFrame()
 
     # Convert molar volume (cm^3/mol) to density (kg/m^3)
-    df2["rho[kg/m^3]"] = M_Fe / (df["Volume (cm3/mol)"]*1e-3)   # V in cm^3/mol
+    df2["rho[kg/m^3]"] = M_Fe / (df["Volume (cm3/mol)"]*1e-6)   # V in cm^3/mol
     # Convert pressure from GPa to Pa
     df2["P[Pa]"] = df["Pressure (GPa)"] * 1e9
     # Convert Delta energy to J/mol
