@@ -1,4 +1,4 @@
-#a(Angstroms)   V(Angstroms^3) rho(g/cc)  P(GPa)    Pst.dev.(GPa)    T(K)   Tst.dev.(K)                  
+a(Angstroms)   V(Angstroms^3) rho(g/cc)  P(GPa)    Pst.dev.(GPa)    T(K)   Tst.dev.(K)                  
 11.00   1331.00 4.04    36.20   1.89    1994.22 131.97                  
 11.50   1520.88 3.53    19.42   2.56    1995.31 131.50                  
 12.00   1728.00 3.11    8.72    1.56    1994.66 149.13                  
