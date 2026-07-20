@@ -1,0 +1,20 @@
+unique_id = "xie2025"
+citation = "Xie et al. (2025)"
+year = 2025
+doi="https://doi.org/10.1016/j.gsf.2024.101847"
+scix="https://scixplorer.org/abs/2025GeoFr..1601847X/abstract"
+bibtex='@ARTICLE{2025GeoFr..1601847X,
+       author = {{Xie}, Miaoxu and {Fu}, Jie and {Belonoshko}, Anatoly B.},
+        title = "{Equation of state and thermodynamic properties of liquid Fe-O in the Earth's outer core}",
+      journal = {Geoscience Frontiers},
+     keywords = {Equation of state, First-principles molecular dynamics, Liquid iron-oxygen alloys, Thermodynamic properties},
+         year = 2025,
+        month = jan,
+       volume = {16},
+       number = {1},
+          eid = {101847},
+        pages = {101847},
+          doi = {10.1016/j.gsf.2024.101847},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2025GeoFr..1601847X},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}'
