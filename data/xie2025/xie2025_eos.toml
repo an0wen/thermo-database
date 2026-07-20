@@ -1,0 +1,39 @@
+unique_id = "xie2025"  # Unique identifier as defined in the *_source.toml, e.g. "miozzi2020"
+
+[science]
+material = "Iron Oxide" # Combined EOS for Fe and O. Data includes pure Fe end member but only goes up to 27.77% by moles (9.9% by weight) O.
+formula = "FexOy"  # x,y variable, given in raw data tables
+phase = "liquid"
+crystal = "na"
+method = "AIMD"
+
+[description]
+type = "fit"
+cold_type = "Murnaghan"
+thermal_exist = true
+thermal_type = "debye"
+reference_temperature = 6000
+
+[validity]
+min_p = 138.23e9
+max_p = 328.68e9
+min_t = 3997.22
+max_t = 6006.33
+min_rho = 8680.979823
+max_rho = 13073.56005
+
+[parameters]
+# These parameters are the result of a simultaneous fit to data where Fe and O fractions are varied, with ideal mixing between the two assumed in calculating V_0, K_0, and K_0_prime parameters
+# The thermal parameters are shared, with e_0, g, gamma_0, and q_debye being composition-independent. The dependence of the mean molecular weight means that the thermal pressure does depend on composition.
+# See paper for further details.
+# All units in SI, translated from original paper units by Bennett Neil Skinner
+V_0_Fe = 8.39486E-06
+V_0_O = 4.96224E-06
+K_0_Fe = 119.63e9
+K_0_O = 277.14e9
+K_0_prime_Fe = 3.50
+K_0_prime_O = 1.21
+e_0 = -4.63e-5
+g = 1.24
+gamma_0 = 1.83
+q_debye = 0.35

@@ -1,0 +1,12 @@
+unique_id = "xie2025"
+
+[science]
+material = "Iron Oxide"
+formula = "FexOy"
+phase = "liquid"
+crystal = "na"
+method = "AIMD"
+
+[other]
+used_in = ["Skinner+2026"]
+notes = "Combined EOS for Fe and O. Data includes pure Fe end member but only goes up to 27.77% by moles (9.9% by weight) O."
